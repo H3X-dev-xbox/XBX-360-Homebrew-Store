@@ -5,8 +5,8 @@
 
 <div align="center">
 
-<!-- ─── HERO GIF ─── -->
-<img src="assets/20260915_130045.gif" alt="XBX 360 Homebrew Store — Animated Banner" width="100%"/>
+<!-- ─── HERO GIF (at repo root) ─── -->
+<img src="https://raw.githubusercontent.com/H3X-dev-xbox/xbx-360-homebrew-store/main/20260915_130045.gif" alt="XBX 360 Homebrew Store — Animated Banner" width="100%"/>
 
 <!-- ─── ANIMATED WAVING HEADER (Green → Purple Gradient) ─── -->
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0e0e0e,35:6B21A8,70:107C10,100:92C83E&height=200&section=header&text=XBX%20360&fontSize=90&fontColor=ffffff&fontAlignY=38&fontFamily=Orbitron&animation=fadeIn&desc=HOMEBREW%20STORE&descSize=32&descAlignY=62&descAlign=50" width="100%"/>
@@ -35,7 +35,7 @@
 
 **XBX 360 Homebrew Store** is a community-driven, fully open-source homebrew repository for the **Xbox 360**. It's designed to be the cleanest, fastest, and friendliest way to browse, download, and install **legally redistributable homebrew** — right from your console.
 
-> 🧠 **Philosophy:** All games are legally acquired. XBX 360 will have all game imaginable with Emulators and apps. we aint responsible for any console bans all apps and games are tested before added to the store.
+> 🧠 **whats in it:** All games we can add will be added including apps and more we do highly recommend for some games you use Xbox 360 stealth servers to go online for some games aka gta 5 but please use from a legal source or from us. thanks for all supports.
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=rect&color=0:6B21A8,100:107C10&height=3&section=header" width="100%"/>
@@ -158,6 +158,7 @@ Interested in helping curate, code, or test the store?
 
 - 🐛 **Found a bug?** Open an issue.
 - 📦 **Want to submit homebrew?** Read `CONTRIBUTING.md` first.
+- 🎨 **Good at UI?** We need a custom Aurora Lua front-end.
 - 🧪 **Own a modded 360?** Beta testers are needed — open an `Early Access Request` issue.
 
 <div align="center">
