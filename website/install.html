@@ -1,1 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Install Guide | XBX 360 Homebrew Store</title>
+<meta name="description" content="Step-by-step installation guide for XBX 360 Homebrew Store on your modded Xbox 360 running Aurora.">
+<meta name="theme-color" content="#08080a">
 
+<meta property="og:title" content="Install Guide — XBX 360 Homebrew Store">
+<meta property="og:description" content="How to install XBX 360 Homebrew Store on your Aurora dashboard.">
+<meta property="og:type" content="article">
+
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --green:        #92C83E;
+    --green-bright: #B4E25C;
+    --green-dark:   #107C10;
+    --purple:       #A855F7;
+    --purple-bright:#C084FC;
+    --purple-dark:  #6B21A8;
+    --blue:         #1E90FF;
+    --blue-bright:  #60A5FA;
+    --blue-alt:     #00BFFF;
+    --bg-0:         #050506;
+    --bg-1:         #08080a;
+    --bg-2:         #0e0e12;
+    --bg-3:         #14141a;
+    --text:         #f5f5f7;
+    --text-dim:     #a1a1aa;
+    --text-faint:   #52525b;
+    --border:       rgba(255, 255, 255, 0.06);
+    --border-hi:    rgba(255, 255, 255, 0.12);
+    --glow-green:   rgba(146, 200, 62, 0.45);
+    --glow-purple:  rgba(168, 85, 247, 0.45);
+    --glow-blue:    rgba(30, 144, 255, 0.45);
+    --font-display: 'Orbitron', sans-serif;
+    --font-body:    'Inter', sans-serif;
+    --font-mono:    'JetBrains Mono', monospace;
+    --radius:       16px;
+    --radius-lg:    24px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg-1);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--green); color: #000; }
+a { color: inherit; text-decoration: none; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-0); }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--green-dark), var(--purple-dark));
+    border-radius: 10px;
+}
+
+/* ─── Background ─── */
+.bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bg-grid {
+    position: absolute;
+    inset: -10%;
+    background-image:
+        linear-gradient(rgba(146, 200, 62, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 144, 255, 0.045) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(600px) rotateX(45deg);
+    transform-origin: center 20%;
+    mask-image: radial-gradient(ellipse at 50% 20%, #000 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 20%, #000 0%, transparent 70%);
+    animation: gridScroll 20s linear infinite;
+}
+
+@keyframes gridScroll {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: 0 60px, 60px 0; }
+}
+
+.bg-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.35;
+    animation: blobFloat 24s ease-in-out infinite;
+}
+
+.bg-blob.green  { width: 550px; height: 550px; background: var(--green-dark);  top: -150px; left: -150px; }
+.bg-blob.purple { width: 500px; height: 500px; background: var(--purple-dark); top: 30%; right: -180px; animation-delay: -8s; }
+.bg-blob.blue   { width: 450px; height: 450px; background: var(--blue);        bottom: -150px; left: 25%; animation-delay: -16s; }
+
+@keyframes blobFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(70px, -50px) scale(1.08); }
+    66%      { transform: translate(-50px, 70px) scale(0.94); }
+}
+
+.bg-noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+}
+
+.cursor-glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(146, 200, 62, 0.08), transparent 60%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: screen;
+}
+
+@media (max-width: 900px) { .cursor-glow { display: none; } }
+
+/* ─── Header ─── */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 20px 32px;
+    transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+    border-bottom: 1px solid transparent;
+}
+
+header.scrolled {
+    padding: 12px 32px;
+    background: rgba(8, 8, 10, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom-color: var(--border);
+}
+
+.nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    flex-shrink: 0;
+}
+
+.logo-mark {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--green) 0%, var(--blue) 50%, var(--purple) 100%);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.logo-mark::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.6), transparent);
+    animation: logoSpin 4s linear infinite;
+    z-index: -1;
+}
+
+.logo-mark span {
+    position: relative;
+    z-index: 1;
+    background: var(--bg-0);
+    color: var(--green);
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 900;
+}
+
+@keyframes logoSpin { to { transform: rotate(360deg); } }
+
+.logo-text { display: flex; flex-direction: column; line-height: 1; }
+.logo-line1 { font-size: 1.05rem; display: flex; gap: 6px; }
+.logo-line1 .xbx { color: var(--text); }
+.logo-line1 .num {
+    background: linear-gradient(135deg, var(--green), var(--blue), var(--purple));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 6s ease infinite;
+}
+.logo-line2 {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    color: var(--text-faint);
+    margin-top: 3px;
+    font-weight: 500;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+.nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    padding: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+}
+
+.nav-links a {
+    display: block;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    transition: color 0.25s, background 0.25s;
+}
+
+.nav-links a:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
+.nav-links a.active { color: var(--green); background: rgba(146, 200, 62, 0.08); }
+
+.nav-cta {
+    position: relative;
+    padding: 11px 24px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--green-dark), var(--green));
+    color: #050506;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.25s, box-shadow 0.35s;
+    box-shadow: 0 0 0 1px rgba(146, 200, 62, 0.4),
+                0 8px 24px -8px rgba(146, 200, 62, 0.6);
+}
+
+.nav-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.6) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(146, 200, 62, 0.6),
+                0 12px 32px -8px rgba(146, 200, 62, 0.8),
+                0 0 60px -10px rgba(30, 144, 255, 0.6);
+}
+
+.nav-cta:hover::after { transform: translateX(100%); }
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 1.3rem;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+.nav-toggle:hover { border-color: var(--green); }
+
+/* ─── Page layout ─── */
+.page-hero {
+    padding: 160px 32px 60px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.page-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: rgba(146, 200, 62, 0.08);
+    border: 1px solid rgba(146, 200, 62, 0.28);
+    color: var(--green-bright);
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    backdrop-filter: blur(10px);
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--green-bright) 0%, var(--blue-bright) 50%, var(--purple-bright) 100%);
+    background-size: 220% 220%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 8s ease infinite, fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+    filter: drop-shadow(0 0 40px rgba(146, 200, 62, 0.3));
+}
+
+.page-sub {
+    color: var(--text-dim);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    max-width: 620px;
+    margin: 0 auto;
+    animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+    line-height: 1.7;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Content ─── */
+.content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 32px 120px;
+}
+
+/* Callout boxes */
+.callout {
+    display: flex;
+    gap: 16px;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 32px;
+    backdrop-filter: blur(10px);
+    animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+.callout.warning {
+    background: rgba(255, 170, 0, 0.06);
+    border: 1px solid rgba(255, 170, 0, 0.28);
+}
+
+.callout.info {
+    background: rgba(30, 144, 255, 0.06);
+    border: 1px solid rgba(30, 144, 255, 0.28);
+}
+
+.callout.success {
+    background: rgba(146, 200, 62, 0.06);
+    border: 1px solid rgba(146, 200, 62, 0.28);
+}
+
+.callout-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-size: 1.1rem;
+}
+
+.callout.warning .callout-icon { background: rgba(255, 170, 0, 0.15); }
+.callout.info .callout-icon    { background: rgba(30, 144, 255, 0.15); }
+.callout.success .callout-icon { background: rgba(146, 200, 62, 0.15); }
+
+.callout-body { flex: 1; }
+.callout-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.callout.warning .callout-title { color: #ffaa00; }
+.callout.info .callout-title    { color: var(--blue-bright); }
+.callout.success .callout-title { color: var(--green-bright); }
+
+.callout-text {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+/* Requirements grid */
+.req-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 56px;
+}
+
+.req-card {
+    padding: 22px;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.req-card:hover {
+    border-color: rgba(146, 200, 62, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6),
+                0 0 40px -20px rgba(146, 200, 62, 0.4);
+}
+
+.req-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, rgba(146, 200, 62, 0.12), rgba(30, 144, 255, 0.12));
+    border: 1px solid rgba(146, 200, 62, 0.22);
+}
+
+.req-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 6px;
+}
+
+.req-text {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+/* Section heading */
+.section-h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    line-height: 1.2;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.section-h2 .num {
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--green-dark), var(--blue));
+    color: #050506;
+    font-size: 1.1rem;
+    font-weight: 900;
+    flex-shrink: 0;
+    box-shadow: 0 8px 24px -8px rgba(146, 200, 62, 0.7);
+}
+
+.step {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.step:last-of-type { border-bottom: none; padding-bottom: 8px; }
+
+.step-desc {
+    color: var(--text-dim);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 20px;
+    padding-left: 56px;
+}
+
+.step-desc strong { color: var(--text); font-weight: 600; }
+
+.step-desc code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    padding: 2px 7px;
+    border-radius: 5px;
+    background: rgba(146, 200, 62, 0.1);
+    border: 1px solid rgba(146, 200, 62, 0.2);
+    color: var(--green-bright);
+}
+
+/* Code block */
+.code-block {
+    margin: 0 0 20px 56px;
+    border-radius: var(--radius);
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+}
+
+.code-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid var(--border);
+}
+
+.code-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+.copy-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.copy-btn:hover {
+    border-color: var(--green);
+    color: var(--green);
+    background: rgba(146, 200, 62, 0.06);
+}
+
+.copy-btn.copied {
+    border-color: var(--green);
+    color: var(--green);
+    background: rgba(146, 200, 62, 0.12);
+}
+
+.code-content {
+    padding: 18px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--green-bright);
+    overflow-x: auto;
+    white-space: pre;
+    -webkit-overflow-scrolling: touch;
+}
+
+.code-content::-webkit-scrollbar { height: 6px; }
+.code-content::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 3px; }
+
+/* Screenshot placeholder */
+.screenshot {
+    margin: 0 0 20px 56px;
+    border-radius: var(--radius);
+    border: 1px dashed var(--border-hi);
+    background: rgba(255, 255, 255, 0.015);
+    padding: 40px 24px;
+    text-align: center;
+}
+
+.screenshot-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+}
+
+.screenshot-title {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+/* Final CTA */
+.final-cta {
+    margin-top: 64px;
+    padding: 48px 32px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(16, 124, 16, 0.12), rgba(30, 144, 255, 0.08), rgba(107, 33, 168, 0.12));
+    border: 1px solid rgba(146, 200, 62, 0.28);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.final-cta::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: var(--radius-lg);
+    background: conic-gradient(from 0deg, transparent, var(--green), transparent, var(--purple), transparent);
+    opacity: 0.28;
+    z-index: -1;
+    animation: rotateConic 8s linear infinite;
+}
+
+@keyframes rotateConic { to { transform: rotate(360deg); } }
+
+.final-cta h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--green-bright), var(--purple-bright));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.final-cta p {
+    color: var(--text-dim);
+    max-width: 500px;
+    margin: 0 auto 24px;
+}
+
+/* Buttons */
+.btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 30px;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    border: none;
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s;
+    isolation: isolate;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+    color: #050506;
+    box-shadow: 0 0 0 1px rgba(146, 200, 62, 0.5),
+                0 10px 30px -8px rgba(146, 200, 62, 0.6);
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 0 1px rgba(146, 200, 62, 0.8),
+                0 20px 40px -10px rgba(146, 200, 62, 0.7),
+                0 0 80px -20px rgba(30, 144, 255, 0.5);
+}
+
+.btn-primary:hover::after { transform: translateX(100%); }
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    border: 1px solid var(--border-hi);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    border-color: rgba(30, 144, 255, 0.5);
+    background: rgba(30, 144, 255, 0.06);
+    box-shadow: 0 12px 32px -10px rgba(30, 144, 255, 0.5);
+}
+
+/* ─── Footer ─── */
+footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 32px;
+    background: var(--bg-0);
+    text-align: center;
+}
+
+.footer-inner { max-width: 1400px; margin: 0 auto; }
+
+.footer-logo {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--green), var(--blue), var(--purple));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 6s ease infinite;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    transition: color 0.25s;
+}
+
+.footer-links a:hover { color: var(--green); }
+
+.footer-legal {
+    color: var(--text-faint);
+    font-size: 0.78rem;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+    header { padding: 16px 20px; }
+    header.scrolled { padding: 10px 20px; }
+
+    .nav-links {
+        position: fixed;
+        top: 72px;
+        left: 16px;
+        right: 16px;
+        flex-direction: column;
+        background: rgba(8, 8, 10, 0.96);
+        backdrop-filter: blur(24px);
+        padding: 16px;
+        gap: 4px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border-hi);
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s;
+        pointer-events: none;
+        box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.8);
+    }
+
+    .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .nav-links a { padding: 12px 16px; }
+    .nav-toggle { display: grid; place-items: center; }
+    .nav-cta { display: none; }
+
+    .page-hero { padding: 130px 20px 40px; }
+    .content { padding: 20px 20px 80px; }
+
+    .step-desc,
+    .code-block,
+    .screenshot { margin-left: 0; padding-left: 0; }
+
+    .step-desc { padding-left: 0; }
+
+    .section-h2 { gap: 10px; font-size: 1.3rem; }
+    .section-h2 .num { width: 36px; height: 36px; font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+    .code-content { font-size: 0.78rem; }
+    .final-cta { padding: 36px 20px; }
+    .btn { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-layer" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-blob green"></div>
+    <div class="bg-blob purple"></div>
+    <div class="bg-blob blue"></div>
+    <div class="bg-noise"></div>
+</div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<header id="header">
+    <nav class="nav" aria-label="Primary">
+        <a href="index.html" class="logo" aria-label="XBX 360 Homebrew Store home">
+            <div class="logo-mark"><span>X</span></div>
+            <div class="logo-text">
+                <div class="logo-line1"><span class="xbx">XBX</span> <span class="num">360</span></div>
+                <div class="logo-line2">HOMEBREW STORE</div>
+            </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="install.html" class="active">Install</a></li>
+            <li><a href="index.html#roadmap">Roadmap</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+
+        <a href="https://github.com/H3X-dev-xbox/xbx-360-homebrew-store" target="_blank" rel="noopener" class="nav-cta">Get Access</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </nav>
+</header>
+
+<main>
+    <section class="page-hero">
+        <span class="page-eyebrow">📖 Installation Guide</span>
+        <h1 class="page-title">Install in Minutes</h1>
+        <p class="page-sub">
+            Get XBX 360 Homebrew Store running on your Aurora dashboard.
+            Every step is clearly explained — no prior experience required.
+        </p>
+    </section>
+
+    <div class="content">
+
+        <!-- ⚠️ Beta Notice -->
+        <div class="callout warning">
+            <div class="callout-icon">⚠️</div>
+            <div class="callout-body">
+                <div class="callout-title">Early Access Beta</div>
+                <div class="callout-text">
+                    Public installation is <strong>not yet available</strong>. This page documents the
+                    installation process for when the store goes public. During Early Access, users
+                    receive a private build after requesting access.
+                </div>
+            </div>
+        </div>
+
+        <!-- Requirements -->
+        <div class="section-h2" style="margin-bottom: 24px;">
+            <span class="num">📋</span> What You'll Need
+        </div>
+
+        <div class="req-grid">
+            <div class="req-card">
+                <div class="req-icon">🎮</div>
+                <div class="req-title">Modded Console</div>
+                <div class="req-text">JTAG or RGH modified Xbox 360</div>
+            </div>
+            <div class="req-card">
+                <div class="req-icon">💿</div>
+                <div class="req-title">Aurora Dashboard</div>
+                <div class="req-text">Latest version installed</div>
+            </div>
+            <div class="req-card">
+                <div class="req-icon">🌐</div>
+                <div class="req-title">Internet Access</div>
+                <div class="req-text">Wi-Fi or Ethernet on your 360</div>
+            </div>
+            <div class="req-card">
+                <div class="req-icon">💾</div>
+                <div class="req-title">Free Storage</div>
+                <div class="req-text">~10 MB on HDD or USB</div>
+            </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step">
+            <div class="section-h2">
+                <span class="num">1</span> Download the Store Package
+            </div>
+            <p class="step-desc">
+                Download the latest <code>XBX360Store.zip</code> from the GitHub Releases page.
+                This single file contains everything the store needs to run.
+            </p>
+            <div class="screenshot">
+                <div class="screenshot-label">Screenshot</div>
+                <div class="screenshot-title">GitHub Releases page with XBX360Store.zip</div>
+            </div>
+            <div class="code-block">
+                <div class="code-head">
+                    <span class="code-label">Download URL</span>
+                    <button class="copy-btn" data-copy="https://github.com/H3X-dev-xbox/xbx-360-homebrew-store/releases/latest">Copy</button>
+                </div>
+                <div class="code-content">https://github.com/H3X-dev-xbox/xbx-360-homebrew-store/releases/latest</div>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step">
+            <div class="section-h2">
+                <span class="num">2</span> Extract the ZIP
+            </div>
+            <p class="step-desc">
+                Extract <code>XBX360Store.zip</code> using any ZIP tool — 7-Zip, WinRAR, or your
+                phone's built-in file manager. You'll get a folder called <code>XBX360Store/</code>.
+            </p>
+            <div class="screenshot">
+                <div class="screenshot-label">Screenshot</div>
+                <div class="screenshot-title">Extracted XBX360Store folder</div>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step">
+            <div class="section-h2">
+                <span class="num">3</span> Connect to Your Xbox 360
+            </div>
+            <p class="step-desc">
+                Transfer the <code>XBX360Store</code> folder to your console using one of these methods:
+            </p>
+            <div class="req-grid" style="margin-bottom: 20px;">
+                <div class="req-card">
+                    <div class="req-icon">📶</div>
+                    <div class="req-title">FTP</div>
+                    <div class="req-text">Use FileZilla, WinSCP, or Aurora's FTP</div>
+                </div>
+                <div class="req-card">
+                    <div class="req-icon">🔌</div>
+                    <div class="req-title">USB Drive</div>
+                    <div class="req-text">FAT32-formatted USB stick</div>
+                </div>
+                <div class="req-card">
+                    <div class="req-icon">🌐</div>
+                    <div class="req-title">SMB Share</div>
+                    <div class="req-text">Via Aurora's network browser</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step">
+            <div class="section-h2">
+                <span class="num">4</span> Place It in the Right Folder
+            </div>
+            <p class="step-desc">
+                Copy the <code>XBX360Store</code> folder into Aurora's utility scripts directory.
+                The exact path depends on where Aurora is installed:
+            </p>
+            <div class="code-block">
+                <div class="code-head">
+                    <span class="code-label">Aurora Scripts Path</span>
+                    <button class="copy-btn" data-copy="Hdd:\Aurora\User\Scripts\Utility\">Copy</button>
+                </div>
+                <div class="code-content">Hdd1:\Aurora\User\Scripts\Utility\XBX360Store\</div>
+            </div>
+            <div class="callout info">
+                <div class="callout-icon">💡</div>
+                <div class="callout-body">
+                    <div class="callout-title">Tip</div>
+                    <div class="callout-text">
+                        If you don't see a <code>Utility</code> folder, create one inside <code>Scripts/</code>.
+                        Aurora will find it automatically.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step">
+            <div class="section-h2">
+                <span class="num">5</span> Launch the Store
+            </div>
+            <p class="step-desc">
+                On your Xbox 360, open Aurora → navigate to <strong>Scripts</strong> → tap
+                <strong>XBX 360 Homebrew Store</strong>. The animated store interface will appear.
+            </p>
+            <div class="screenshot">
+                <div class="screenshot-label">Screenshot</div>
+                <div class="screenshot-title">Aurora Scripts menu showing XBX 360 Homebrew Store</div>
+            </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="step">
+            <div class="section-h2">
+                <span class="num">6</span> Install Homebrew
+            </div>
+            <p class="step-desc">
+                Browse categories, tap a game or app, and press <strong>Install</strong>.
+                The store downloads from Archive.org and extracts to the correct folder — silently,
+                automatically, and safely.
+            </p>
+            <div class="callout success">
+                <div class="callout-icon">✅</div>
+                <div class="callout-body">
+                    <div class="callout-title">Done</div>
+                    <div class="callout-text">
+                        Your homebrew is now installed. Reload Aurora if needed, and it will
+                        appear in the appropriate category.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="callout warning" style="margin-top: 40px;">
+            <div class="callout-icon">🔧</div>
+            <div class="callout-body">
+                <div class="callout-title">Troubleshooting</div>
+                <div class="callout-text">
+                    <strong>Store doesn't appear in Aurora:</strong> Make sure Aurora has been restarted and the folder is in the correct path.<br>
+                    <strong>Downloads fail:</strong> Check your console's internet connection and try again.<br>
+                    <strong>Extraction errors:</strong> Ensure your storage has enough free space.
+                </div>
+            </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div class="final-cta">
+            <h3>Ready to Request Early Access?</h3>
+            <p>Slots are limited during the beta. Public release will be free for everyone.</p>
+            <a href="https://github.com/H3X-dev-xbox/xbx-360-homebrew-store/issues/new?title=Early+Access+Request" target="_blank" rel="noopener" class="btn btn-primary">
+                Request Early Access →
+            </a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">XBX 360 HOMEBREW STORE</div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="install.html">Install Guide</a>
+            <a href="index.html#roadmap">Roadmap</a>
+            <a href="index.html#faq">FAQ</a>
+            <a href="https://github.com/H3X-dev-xbox/xbx-360-homebrew-store" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p class="footer-legal">
+            Unofficial fan project. Not affiliated with Microsoft Corporation.
+            All content is legally redistributable homebrew.
+        </p>
+    </div>
+</footer>
+
+<script>
+(function () {
+    'use strict';
+
+    /* Header scroll state */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* Mobile nav */
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open);
+        navToggle.textContent = open ? '✕' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(l => {
+        l.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            navToggle.textContent = '☰';
+        });
+    });
+
+    /* Copy buttons */
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const text = btn.getAttribute('data-copy');
+            try {
+                await navigator.clipboard.writeText(text);
+                const original = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = original;
+                    btn.classList.remove('copied');
+                }, 1800);
+            } catch (e) {
+                /* Fallback */
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                ta.remove();
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                    btn.classList.remove('copied');
+                }, 1800);
+            }
+        });
+    });
+
+    /* Cursor glow */
+    const cursorGlow = document.getElementById('cursorGlow');
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (!isTouch && cursorGlow) {
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+        let gx = mx, gy = my;
+        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+        (function loop() {
+            gx += (mx - gx) * 0.08;
+            gy += (my - gy) * 0.08;
+            cursorGlow.style.transform = `translate(${gx}px, ${gy}px) translate(-50%, -50%)`;
+            requestAnimationFrame(loop);
+        })();
+    }
+
+    /* Smooth anchor scroll */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function (e) {
+            const id = this.getAttribute('href');
+            if (id.length < 2) return;
+            const target = document.querySelector(id);
+            if (!target) return;
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+})();
+</script>
+
+</body>
+  </html>
