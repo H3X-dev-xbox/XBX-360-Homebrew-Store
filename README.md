@@ -5,24 +5,27 @@
 
 <div align="center">
 
-<!-- ─── ANIMATED WAVING HEADER (Xbox Green Gradient) ─── -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0e0e0e,40:107C10,100:92C83E&height=220&section=header&text=XBX%20360&fontSize=90&fontColor=ffffff&fontAlignY=38&fontFamily=Orbitron&animation=fadeIn&desc=HOMEBREW%20STORE&descSize=32&descAlignY=62&descAlign=50" width="100%"/>
+<!-- ─── HERO GIF ─── -->
+<img src="assets/20260915_130045.gif" alt="XBX 360 Homebrew Store — Animated Banner" width="100%"/>
+
+<!-- ─── ANIMATED WAVING HEADER (Green → Purple Gradient) ─── -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0e0e0e,35:6B21A8,70:107C10,100:92C83E&height=200&section=header&text=XBX%20360&fontSize=90&fontColor=ffffff&fontAlignY=38&fontFamily=Orbitron&animation=fadeIn&desc=HOMEBREW%20STORE&descSize=32&descAlignY=62&descAlign=50" width="100%"/>
 
 <!-- ─── TYPING ANIMATION ─── -->
 <a href="https://github.com/H3X-dev-xbox/xbx-360-homebrew-store">
-  <img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=700&size=26&duration=2800&pause=900&color=92C83E&center=true&vCenter=true&width=780&height=60&lines=Homebrew+for+the+Xbox+360;Legally+Redistributable+Only;Early+Access+Beta+Now;Free+For+Everyone+At+Launch" alt="Typing SVG"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=700&size=26&duration=2800&pause=900&color=A855F7&center=true&vCenter=true&width=780&height=60&lines=Homebrew+for+the+Xbox+360;Legally+Redistributable+Only;Early+Access+Beta+Now;Free+For+Everyone+At+Launch" alt="Typing SVG"/>
 </a>
 
-<!-- ─── BADGE ROW ─── -->
+<!-- ─── BADGE ROW (Green + Purple) ─── -->
 <p>
-  <img src="https://img.shields.io/badge/STATUS-EARLY%20ACCESS%20BETA-107C10?style=for-the-badge&labelColor=0e0e0e&logo=xbox&logoColor=92C83E"/>
-  <img src="https://img.shields.io/badge/PUBLIC%20LAUNCH-FREE-92C83E?style=for-the-badge&labelColor=0e0e0e"/>
-  <img src="https://img.shields.io/badge/LICENSE-GPL--3.0-92C83E?style=for-the-badge&labelColor=0e0e0e"/>
-  <img src="https://img.shields.io/badge/PLATFORM-Xbox%20360-107C10?style=for-the-badge&labelColor=0e0e0e"/>
+  <img src="https://img.shields.io/badge/STATUS-EARLY%20ACCESS%20BETA-6B21A8?style=for-the-badge&labelColor=0e0e0e&logo=xbox&logoColor=92C83E"/>
+  <img src="https://img.shields.io/badge/PUBLIC%20LAUNCH-FREE-107C10?style=for-the-badge&labelColor=0e0e0e"/>
+  <img src="https://img.shields.io/badge/LICENSE-GPL--3.0-A855F7?style=for-the-badge&labelColor=0e0e0e"/>
+  <img src="https://img.shields.io/badge/PLATFORM-Xbox%20360-92C83E?style=for-the-badge&labelColor=0e0e0e"/>
 </p>
 
-<!-- ─── BETA WARNING ─── -->
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:8B0000,100:107C10&height=70&text=🚀%20EARLY%20ACCESS%20BETA%20—%20FREE%20AT%20PUBLIC%20LAUNCH%20🚀&fontSize=22&fontColor=ffffff&fontFamily=Orbitron&animation=twinkling" width="100%"/>
+<!-- ─── BETA WARNING BANNER (Purple → Green) ─── -->
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:6B21A8,50:107C10,100:92C83E&height=70&text=🚀%20EARLY%20ACCESS%20BETA%20—%20FREE%20AT%20PUBLIC%20LAUNCH%20🚀&fontSize=22&fontColor=ffffff&fontFamily=Orbitron&animation=twinkling" width="100%"/>
 
 </div>
 
@@ -32,17 +35,10 @@
 
 **XBX 360 Homebrew Store** is a community-driven, fully open-source homebrew repository for the **Xbox 360**. It's designed to be the cleanest, fastest, and friendliest way to browse, download, and install **legally redistributable homebrew** — right from your console.
 
-> ## What Will Be Included?? XBX 360 Homebrew Store will have games for users to download aswell as homgrew games and more.
-> list of some games included:
-> -GTA 5
-> -RED DEAD REDEMPTION
-> - All call of dutys
-> - and much more
->
-> ## Have any ideas or more let us know and thanks for the support to all. 
+> 🧠 **Philosophy:** All games are legally acquired. XBX 360 will have all game imaginable with Emulators and apps. we aint responsible for any console bans all apps and games are tested before added to the store.
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:0e0e0e,100:107C10&height=3&section=header" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:6B21A8,100:107C10&height=3&section=header" width="100%"/>
 </div>
 
 ## 🚀 Early Access Beta — **Free at Public Launch**
@@ -86,7 +82,7 @@ The small early-access fee exists **only** to keep server bandwidth under contro
 - 📩 **Early access inquiries:** open an issue titled `Early Access Request`.
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:0e0e0e,100:107C10&height=3&section=header" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:6B21A8,100:107C10&height=3&section=header" width="100%"/>
 </div>
 
 ## ✨ Planned Features
@@ -107,7 +103,7 @@ The small early-access fee exists **only** to keep server bandwidth under contro
 
 ### 🚀 Advanced
 - 🧾 SHA-256 checksum verification
-- 🌐 GitHub Releases as CDN
+- 🌐 Archive.org as CDN
 - 🎨 Custom Aurora Lua UI
 - 🧩 Modular repo system
 - 🌍 Community-submitted content
@@ -117,7 +113,7 @@ The small early-access fee exists **only** to keep server bandwidth under contro
 </table>
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:0e0e0e,100:107C10&height=3&section=header" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:6B21A8,100:107C10&height=3&section=header" width="100%"/>
 </div>
 
 ## 🗺️ Roadmap
@@ -125,7 +121,8 @@ The small early-access fee exists **only** to keep server bandwidth under contro
 - [x] Name & branding finalized
 - [x] Repository created
 - [x] Legal & license framework
-- [ ] `repo.ini` finalized
+- [x] README + animated branding
+- [ ] `xbx360store.ini` finalized
 - [ ] First category files created
 - [ ] First 5 homebrew items curated
 - [ ] Custom Aurora Lua front-end
@@ -136,7 +133,7 @@ The small early-access fee exists **only** to keep server bandwidth under contro
 - [ ] Auto-update checker
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:0e0e0e,100:107C10&height=3&section=header" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:6B21A8,100:107C10&height=3&section=header" width="100%"/>
 </div>
 
 ## ⚖️ Legal
@@ -152,7 +149,7 @@ The small early-access fee exists **only** to keep server bandwidth under contro
 > *Xbox, Xbox 360, and Xenon are trademarks of Microsoft Corporation. All use is for descriptive purposes only.*
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:0e0e0e,100:107C10&height=3&section=header" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:6B21A8,100:107C10&height=3&section=header" width="100%"/>
 </div>
 
 ## 🤝 Contributing
@@ -161,14 +158,13 @@ Interested in helping curate, code, or test the store?
 
 - 🐛 **Found a bug?** Open an issue.
 - 📦 **Want to submit homebrew?** Read `CONTRIBUTING.md` first.
-- 🎨 **Good at UI?** We need a custom Aurora Lua front-end.
 - 🧪 **Own a modded 360?** Beta testers are needed — open an `Early Access Request` issue.
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:0e0e0e,100:107C10&height=3&section=header" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:6B21A8,100:107C10&height=3&section=header" width="100%"/>
 </div>
 
-## 💚 Credits
+## 💚💜 Credits
 
 - **Aurora Dashboard** — the homebrew dashboard this store runs on
 - **LibXenon** — the open-source Xbox 360 toolchain
@@ -180,6 +176,7 @@ Interested in helping curate, code, or test the store?
 
 ### ⭐ Star this repo to be notified when the free public release drops
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:92C83E,60:107C10,100:0e0e0e&height=140&section=footer&text=XBX%20360%20Homebrew%20Store&fontSize=28&fontColor=ffffff&fontFamily=Orbitron&animation=fadeIn&desc=Maintained%20by%20H3X-dev-xbox&descSize=16&descAlignY=78" width="100%"/>
+<!-- ─── FOOTER (Purple → Green → Dark) ─── -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:A855F7,35:6B21A8,70:107C10,100:0e0e0e&height=140&section=footer&text=XBX%20360%20Homebrew%20Store&fontSize=28&fontColor=ffffff&fontFamily=Orbitron&animation=fadeIn&desc=Maintained%20by%20H3X-dev-xbox&descSize=16&descAlignY=78" width="100%"/>
 
 </div>
