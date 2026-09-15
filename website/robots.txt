@@ -1,1 +1,10 @@
+# ═══════════════════════════════════════════════════════════════════
+# XBX 360 Homebrew Store — robots.txt
+# ═══════════════════════════════════════════════════════════════════
 
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+# Sitemap location
+Sitemap: https://h3x-dev-xbox.github.io/xbx-360-homebrew-store/sitemap.xml
