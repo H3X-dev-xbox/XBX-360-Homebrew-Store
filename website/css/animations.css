@@ -1,1 +1,60 @@
+/* ═══════════════════════════════════════════════════════════════════
+   XBX 360 HOMEBREW STORE — Animations
+   ═══════════════════════════════════════════════════════════════════ */
 
+@keyframes gridScroll {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: 0 60px, 60px 0; }
+}
+
+@keyframes blobFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(70px, -50px) scale(1.08); }
+    66%      { transform: translate(-50px, 70px) scale(0.94); }
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+@keyframes logoSpin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dotPulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.4; }
+}
+
+@keyframes rotateConic {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pingPong {
+    0%   { transform: scale(1);   opacity: 0.6; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes shimmer {
+    0%   { transform: translateX(-100%); }
+    60%  { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes particleRise {
+    from { transform: translateY(100vh) scale(0); opacity: 0; }
+    10%  { opacity: 0.8; }
+    90%  { opacity: 0.8; }
+    to   { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+@keyframes scrollDot {
+    0%   { top: 8px;  opacity: 1; }
+    100% { top: 22px; opacity: 0; }
+}
